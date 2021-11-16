@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
-const apiRoutes = require("./api.route");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
 
 const app = express();
 
@@ -11,11 +12,11 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
-app.use(express.json());
+app.use(bodyParser.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true }));
+app.use(logger("dev"));
 
+const apiRoutes = require("./api.route");
 app.use("/api/v1", apiRoutes);
 
 // set port, listen for requests
@@ -23,3 +24,5 @@ const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
+
+module.exports = app;
