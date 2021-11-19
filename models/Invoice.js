@@ -9,24 +9,24 @@ module.exports = (Sequelize, { DataTypes }) => {
       allowNull: false,
     },
     userid: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       references: {
         model: "User",
         key: "id",
       },
     },
     total_price: {
-      type: Sequelize.DECIMAL(10, 2),
+      type: DataTypes.DECIMAL(10, 2),
       allowNull: false,
     },
     is_paid: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   });
 
   Invoice.associate = (models) => {
-    Invoice.hasOne(models.User, { foreignKey: "userid" });
+    Invoice.belongsTo(models.User, { foreignKey: "userid" });
   };
 
   return Invoice;

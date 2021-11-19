@@ -2,9 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const basename = path.basename(__filename);
 const Sequelize = require("sequelize");
-const config = require("../config/config.json");
+let config = require("../config/config.json")[process.env.NODE_ENV];
 const db = {};
-
 let sequelize = new Sequelize(
   config.database,
   config.username,
@@ -36,6 +35,14 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
+// sequelize
+//   .sync()
+//   .then(() => {
+//     console.log("Database synchronized");
+//   })
+//   .catch(() => {});
+
 db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 module.exports = db;

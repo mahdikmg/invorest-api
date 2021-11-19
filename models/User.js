@@ -9,20 +9,20 @@ module.exports = (Sequelize, { DataTypes }) => {
       allowNull: false,
     },
     is_admin: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     is_employee: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
     username: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
       unique: true,
     },
     password: {
-      type: Sequelize.CHAR(32),
+      type: DataTypes.CHAR(32),
       allowNull: true,
     },
   });

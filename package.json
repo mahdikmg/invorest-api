@@ -4,7 +4,8 @@
   "description": "invorest-api",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "pretest": "cross-env NODE_ENV=test npm run db:reset",
     "db:create:test": "cross-env NODE_ENV=test npx sequelize-cli db:create",
@@ -14,8 +15,14 @@
   "author": "maverick",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-validation": "^3.0.8",
+    "http-status": "^1.5.0",
+    "joi": "^17.4.2",
+    "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.9.0"
@@ -26,5 +33,8 @@
     "nodemon": "^2.0.15",
     "sequelize-cli": "^6.3.0",
     "supertest": "^6.1.6"
+  },
+  "_moduleAliases": {
+    "@root": "."
   }
 }
