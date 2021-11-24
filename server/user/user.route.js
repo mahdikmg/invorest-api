@@ -1,12 +1,9 @@
 const express = require("express");
-const validate = require("express-validation");
-const joi = require("joi");
+const jwtValidator = require("@root/server/helpers/authenticateJWT");
 
 const controllers = require("./user.controller");
 
-const paramValidation = {};
-
 const router = express.Router();
-router.route("/").get(controllers.list);
+router.route("/").get(jwtValidator, controllers.list);
 
 module.exports = router;
